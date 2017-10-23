@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App'
+import App from './components/App'
 import router from './router'
 import UIkit from 'uikit'
 import Icons from 'uikit/dist/js/uikit-icons'
@@ -13,10 +13,13 @@ import VueGlobalReactive from './plugins/global'
 UIkit.use(Icons)
 
 Vue.use(VueGlobalReactive)
+
 Vue.config.productionTip = false
 Vue.use(VueLocalStorage, {bind: true})
 Vue.use(VueFire)
 Vue.use(Router)
+
+// 8b98bf4f896b40a0116179ecd518dda4c26e52b8
 
 var config = {
   apiKey: 'AIzaSyDZnIN6rJ2qdZoaL2OGyXE73244w4N6t7U',

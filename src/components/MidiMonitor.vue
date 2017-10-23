@@ -1,29 +1,11 @@
-<template>
-  <div>
-    <midi-selector @inputChanged="inputChanged"></midi-selector>
-    <select multiple>
-      <option v-for="message in messages" value="message">
-        {{ message.toString() }}
-      </option>
-    </select>
-  </div>
-</template>
-
 <script>
   import MidiSelector from './MidiSelector'
-
-  class Message {
-    constructor (e) {
-      this.e = e
-    }
-    toString () {
-      return this.e.data
-    }
-  }
+  import Pad from './DrumPad'
 
   export default {
     components: {
-      'midi-selector': MidiSelector
+      'midi-selector': MidiSelector,
+      'pad': Pad
     },
     data () {
       return {
@@ -32,6 +14,9 @@
       }
     },
     methods: {
+      clear () {
+        this.messages = []
+      },
       inputChanged (newInput) {
         this.currentIntput = newInput
         if (this.currentIntput) {
@@ -41,9 +26,11 @@
       },
       onMidi (e) {
         this.messages.push(new Message(e))
-        if (e.data[0] === 144) {
+        const isKeyDown = e.data[0] === 144
+        const isKeyUp = e.data[0] === 128 || isKeyDown && e.data[2] === 0
+        if (isKeyDown) {
           this.onNoteOn(e.data[1], e.data[2])
-        } else if (e.data[0] === 128) {
+        } else if (isKeyUp) {
           this.onNoteOff(e.data[1], e.data[2])
         }
       },
@@ -51,7 +38,27 @@
       },
       onNoteOff (key, velo) {
       }
+    }
+  }
 
+  class Message {
+    constructor (e) {
+      this.e = e
+    }
+    toString () {
+      return this.e.data
     }
   }
 </script>
+
+<template>
+  <div>
+    <midi-selector @inputChanged="inputChanged"></midi-selector>
+    <select multiple @keyup.delete="clear">
+      <option v-for="message in messages" value="message">
+        {{ message.toString() }}
+      </option>
+    </select>
+    <pad></pad>
+  </div>
+</template>

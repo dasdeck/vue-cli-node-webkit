@@ -1,2 +1,3 @@
 {
+  "window.title": "vue-cli-app :: ${activeEditorShort}${separator}${rootName}"
 }

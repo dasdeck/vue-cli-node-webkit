@@ -9,5 +9,9 @@
   </div>
 </template>
 <script>
-  export default {}
+  export default {
+    created () {
+      console.log('created')
+    }
+  }
 </script>

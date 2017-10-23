@@ -1,8 +1,8 @@
 <template>
 <div>
-  <select v-model="$localStorage.selectedId">
-    <option v-if="!$localStorage.selectedId" :value="''" selected>[none selected]</option>
-    <option v-if="selectedId && !selectedInput" :value="$localStorage.selectedId" selected>[not available]</option>
+  <select v-model="selectedId">
+    <option v-if="!selectedId" :value="''" selected>[none selected]</option>
+    <option v-if="selectedId && !selectedInput" :value="selectedId" selected>[not available]</option>
     <option v-for="input in inputs" :selected="selectedInput===input" :value="input.id">{{input.name}}</option>
   </select>
 </div>
