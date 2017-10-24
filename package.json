@@ -4,6 +4,16 @@
   "description": "A Vue.js project",
   "author": "Jan Manuel Schlieper <>",
   "private": true,
+  "main":"http://localhost:8080",
+  "node-remote": "http://localhost",
+  "window": {
+    "title": "vue-cli-app",
+    "toolbar": true,
+    "frame": true,
+    "width": 500,
+    "height": 500,
+    "position": "center"
+    },
   "scripts": {
     "dev": "node build/dev-server.js",
     "webpack": "node build/dev-server.js",
@@ -13,11 +23,13 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "karma": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --watch",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
+    "nw":"nw --remote-debugging-port=9222 ."
   },
   "dependencies": {
     "firebase": "^4.5.0",
     "jquery": "^3.2.1",
+    "nw": "^0.26.0-sdk",
     "uikit": "^3.0.0-beta.30",
     "vue": "^2.4.4",
     "vue-router": "^2.7.0",

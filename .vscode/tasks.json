@@ -1,12 +1,19 @@
 {
   "version": "2.0.0",
-  "tasks": [{
-      "label":"dev",
-      "type":"npm",
+  "tasks": [
+    {
+      "label": "dev",
+      "type": "npm",
       "script": "dev+",
       "group": {
         "kind": "build",
         "isDefault": true
       }
-  }]
+    },
+    {
+      "type": "npm",
+      "script": "webpack",
+      "problemMatcher": []
+    }
+  ]
 }

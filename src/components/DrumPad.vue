@@ -6,6 +6,8 @@
 </template>
 <script>
   import { upload } from '../upload.js'
+  import fs from 'fs';
+
   export default {
     created () {
       this.context = new AudioContext({latencyHint: 1 / 44100 * 32})
@@ -18,6 +20,8 @@
         // debugger
       },
       dropped (e) {
+
+        debugger;
         let fr = new FileReader()
         fr.onload = ({target}) => {
           this.context.decodeAudioData(target.result, (buffer) => {

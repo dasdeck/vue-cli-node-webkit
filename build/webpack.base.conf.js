@@ -11,6 +11,7 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  target:"node-webkit",
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
